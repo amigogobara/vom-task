@@ -24,9 +24,9 @@ class StoreSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'vat_value' => 'nullable|numeric',
+            'vat_value' => 'required|numeric',
             'vat_value_type' => 'nullable|in:percentage,amount',
-            'shipping_cost_value' => 'nullable|numeric',
+            'shipping_cost_value' => 'required|numeric',
             'shipping_cost_value_type' => 'nullable|in:percentage,amount',
         ];
     }
