@@ -21,4 +21,15 @@ Route::group(['prefix' => 'merchant'], function() {
     Route::post('/login', [AuthenticationController::class, 'login']);
 
     Route::post('/logout', [AuthenticationController::class,'logout']);
+
+    Route::group(['middleware' => 'auth:api'],function (){
+
+        Route::get('store', [
+            \App\Http\Controllers\Api\Merchant\StoreSettingsController::class,'index'
+        ]);
+
+        Route::post('update-store-settings', [
+            \App\Http\Controllers\Api\Merchant\StoreSettingsController::class,'update'
+        ]);
+    });
 });
