@@ -14,8 +14,9 @@ class Authentication
         $this->createStore($request->validated(), $user);
 
         $token = auth()->tokenById($user->id);
+        $updatedUser = User::find($user->id);
 
-        return ['user' => $user,'token' => $token];
+        return ['user' => $updatedUser,'token' => $token];
     }
 
     public function login()
