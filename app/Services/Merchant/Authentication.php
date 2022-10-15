@@ -18,6 +18,17 @@ class Authentication
         return ['user' => $user,'token' => $token];
     }
 
+    public function login()
+    {
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return 401;
+        }
+
+        return $this->respondWithToken($token);
+    }
+
     private function createUser($validatedData)
     {
         return User::create([
@@ -36,5 +47,14 @@ class Authentication
         ]);
 
         $user->update(['store_id' => $store->id]);
+    }
+
+    private function respondWithToken($token)
+    {
+     return [
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ];
     }
 }

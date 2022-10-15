@@ -24,11 +24,18 @@ class AuthenticationController extends Controller
 
     public function login()
     {
+        $login = $this->authentication->login();
+        if(is_int($login)){
+            return $this->apiResponse(new \stdClass(),'wrong email or password',401);
+        }
 
+        return  $this->apiResponse($login);
     }
 
     public function logout()
     {
+        auth()->guard('api')->logout();
 
+        return $this->apiResponse(new \stdClass(),'Logout successfully');
     }
 }

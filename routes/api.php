@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Api\Merchant\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'merchant'], function() {
-    Route::post(
-       '/register',
-       [\App\Http\Controllers\Api\Merchant\AuthenticationController::class,
-       'register']
-    );
+    Route::post('/register', [AuthenticationController::class, 'register']);
+
+    Route::post('/login', [AuthenticationController::class, 'login']);
+
+    Route::post('/logout', [AuthenticationController::class,'logout']);
 });
