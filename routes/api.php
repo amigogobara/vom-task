@@ -40,4 +40,8 @@ Route::group(['prefix' => 'customer'] , function() {
     Route::get('products',[
         \App\Http\Controllers\Api\Customer\ProductController::class,'index'
     ]);
+
+    Route::post('add-to-cart', [
+        \App\Http\Controllers\Api\Customer\ProductController::class,'addToCart'
+    ]);
 });
