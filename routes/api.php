@@ -35,3 +35,9 @@ Route::group(['prefix' => 'merchant'], function() {
         Route::apiResource('/products',\App\Http\Controllers\Api\Merchant\ProductController::class);
     });
 });
+
+Route::group(['prefix' => 'customer'] , function() {
+    Route::get('products',[
+        \App\Http\Controllers\Api\Customer\ProductController::class,'index'
+    ]);
+});

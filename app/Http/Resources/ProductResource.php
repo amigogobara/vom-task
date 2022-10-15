@@ -19,7 +19,10 @@ class ProductResource extends JsonResource
             'name' => $this->translation($request, 'name'),
             'description' => $this->translation($request, 'description'),
             'price'       => $this->price,
-            'price_has_vat' => $this->price_has_vat ? true : false
+            'price_has_vat' => $this->price_has_vat ? true : false,
+            'price_note' => $this->price_has_vat ? 'Price include VAT' : 'Price not Include VAT',
+            'vat_value'  => $this->price_has_vat ? 0 : $this->store->vat_value,
+            'vat_value_type' => $this->price_has_vat ? '' : $this->store->vat_value_type,
         ];
     }
 
