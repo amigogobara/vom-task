@@ -13,4 +13,9 @@ class Store extends Model
         'name','url','vat_value','vat_value_type',
         'shipping_cost_value','shipping_cost_value_type'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

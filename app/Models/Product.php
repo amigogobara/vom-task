@@ -4,8 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
+
+    public $translatable = ['name','description'];
+
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'price_has_vat'
+    ];
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

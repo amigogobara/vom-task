@@ -9,13 +9,6 @@ use Illuminate\Http\Request;
 
 class StoreSettingsController extends Controller
 {
-    public $storeSettings;
-
-    public function __construct(StoreSettings $settings)
-    {
-        $this->storeSettings = $settings;
-    }
-
     public function index()
     {
         return $this->apiResponse(auth()->user()->store);

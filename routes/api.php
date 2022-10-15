@@ -31,5 +31,7 @@ Route::group(['prefix' => 'merchant'], function() {
         Route::post('update-store-settings', [
             \App\Http\Controllers\Api\Merchant\StoreSettingsController::class,'update'
         ]);
+
+        Route::apiResource('/products',\App\Http\Controllers\Api\Merchant\ProductController::class);
     });
 });
